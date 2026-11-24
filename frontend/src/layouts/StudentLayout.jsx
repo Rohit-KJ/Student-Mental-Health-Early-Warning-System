@@ -41,6 +41,7 @@ function StudentLayout() {
 
   const navItems = [
     { to: '/dashboard', label: 'Dashboard' },
+    { to: '/support', label: 'Support & Motivation' },
     { to: '/history', label: 'History' },
     { to: '/profile', label: 'Profile' },
   ]

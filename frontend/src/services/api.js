@@ -54,3 +54,10 @@ export async function predictAssessment(type, responses) {
 export async function fetchHistory() {
   return apiRequest('/history')
 }
+
+export async function generateSupportiveMessage(text) {
+  return apiRequest('/nlp/support', {
+    method: 'POST',
+    body: JSON.stringify({ text }),
+  })
+}

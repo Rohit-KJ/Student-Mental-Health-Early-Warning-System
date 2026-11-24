@@ -148,6 +148,37 @@ function Dashboard() {
         </div>
       </section>
 
+      {/* NLP Motivational Support Feature Section */}
+      <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xs transition hover:border-blue-300 sm:p-8">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
+          <div className="max-w-2xl space-y-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+              <span>💬</span>
+              <span>Emotional & Motivational Support</span>
+            </div>
+            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              Need a moment of encouragement or calm?
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-600">
+              Share what you are currently experiencing—academic pressure, exhaustion, or anxiety—and receive a safe, empathetic response with gentle grounding steps.
+            </p>
+            <p className="text-xs text-slate-400">
+              🛡️ Fully confidential • In-memory processing • Non-diagnostic peer encouragement
+            </p>
+          </div>
+
+          <div className="shrink-0">
+            <button
+              onClick={() => navigate('/support')}
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700 shadow-xs"
+            >
+              <span>Share & Get Support</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section>
         <div className="mb-6">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">

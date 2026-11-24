@@ -7,6 +7,7 @@ import Assessment from './pages/Assessment'
 import Result from './pages/Result'
 import History from './pages/History'
 import Profile from './pages/Profile'
+import Support from './pages/Support'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       {/* Student Portal Layout Routes */}
       <Route element={<StudentLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/support" element={<Support />} />
         <Route path="/assessment/:type" element={<Assessment />} />
         <Route path="/result" element={<Result />} />
         <Route path="/history" element={<History />} />

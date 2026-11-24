@@ -11,11 +11,16 @@ from sqlalchemy.orm import Session #type:ignore
 from sqlalchemy.exc import SQLAlchemyError #type:ignore
 from sqlalchemy import text #type:ignore
 
-from pytorch_tabnet.tab_model import TabNetRegressor #type:ignore
+try:
+    from pytorch_tabnet.tab_model import TabNetRegressor #type:ignore
+except ImportError:
+    TabNetRegressor = None
 
 from core.dependencies import get_current_user
-from db.database import database_engine, get_database_session
+from db.database import database_engine, DatabaseModelBase, get_database_session
+import models
 from routers.authentication import authentication_router
+from routers.nlp import nlp_router
 from models.assessment_result import AssessmentResult
 
 # Classfications of the models using if else , based on the predciotns 
@@ -70,6 +75,10 @@ app = FastAPI(
 )
 
 app.include_router(authentication_router)
+app.include_router(nlp_router)
+
+# Automatically ensure database tables exist on startup
+DatabaseModelBase.metadata.create_all(bind=database_engine)
 
 app.add_middleware(
     CORSMiddleware,
@@ -119,6 +128,15 @@ def get_overall_model():
 
     if overall_model is not None:
         return overall_model
+
+    if TabNetRegressor is None:
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                "pytorch_tabnet is not installed on this server. "
+                "Please install pytorch-tabnet to use the TabNet prediction model."
+            )
+        )
 
     if not MODEL_PATH.exists():
         raise HTTPException(
